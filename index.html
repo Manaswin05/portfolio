@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manaswin | Portfolio</title>
+  <meta name="description" content="Personal portfolio of Manaswin – developer, builder, problem solver." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f0f11;
+      --surface: #1a1a1f;
+      --border: #2a2a32;
+      --accent: #6c63ff;
+      --accent-light: #a89bff;
+      --text: #e8e8f0;
+      --muted: #8888a0;
+      --radius: 12px;
+      --transition: 0.25s ease;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent-light); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: #fff; }
+    img { display: block; max-width: 100%; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(15,15,17,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.9rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+
+    /* ── Sections ── */
+    section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-top: 5rem;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+    .hero-title { font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 700; line-height: 1.15; }
+    .hero-title .highlight { color: var(--accent); }
+    .hero-sub { margin-top: 1.25rem; font-size: 1.1rem; color: var(--muted); max-width: 520px; }
+    .hero-btns { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.75rem; border-radius: 8px; font-size: 0.9rem;
+      font-weight: 600; cursor: pointer; transition: var(--transition); border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-light); color: #0f0f11; }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent-light); }
+
+    /* ── About ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .avatar-wrap { display: flex; justify-content: center; }
+    .avatar {
+      width: 220px; height: 220px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #ff6b9d);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; user-select: none;
+    }
+    .skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .skill-tag {
+      padding: 0.35rem 0.85rem; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 0.8rem; color: var(--muted);
+      transition: var(--transition);
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent-light); }
+
+    /* ── Section title ── */
+    .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .section-line {
+      width: 40px; height: 3px; background: var(--accent);
+      border-radius: 2px; margin-bottom: 2.5rem;
+    }
+
+    /* ── Projects ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      transition: transform var(--transition), border-color var(--transition);
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.875rem; color: var(--muted); }
+    .card-links { margin-top: 1rem; display: flex; gap: 1rem; font-size: 0.8rem; }
+
+    /* ── Contact ── */
+    .contact-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem;
+    }
+    .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.65rem 1.25rem; border-radius: 8px;
+      background: var(--bg); border: 1px solid var(--border);
+      font-size: 0.875rem; color: var(--muted);
+      transition: var(--transition);
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent-light); }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 0.8rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 60px; left: 0; right: 0;
+        background: var(--bg); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; gap: 1.25rem; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav aria-label="Main navigation">
+    <a href="#hero" class="nav-logo">M<span>.</span>dev</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <span class="hero-tag">👋 Welcome to my portfolio</span>
+    <h1 class="hero-title">
+      Hi, I'm <span class="highlight">Manaswin</span><br />
+      I build things for the web.
+    </h1>
+    <p class="hero-sub">
+      Full-stack developer passionate about crafting clean, performant, and accessible digital experiences.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+    <div class="about-grid">
+      <div class="avatar-wrap">
+        <div class="avatar" role="img" aria-label="Avatar">🧑‍💻</div>
+      </div>
+      <div>
+        <p style="color:var(--muted); margin-bottom:1rem;">
+          I'm a developer who loves turning ideas into reality through code.
+          I enjoy working across the stack — from crafting pixel-perfect UIs to
+          designing scalable backend systems.
+        </p>
+        <p style="color:var(--muted); margin-bottom:1.5rem;">
+          When I'm not coding, I'm exploring new tech, contributing to open source,
+          or tinkering with side projects.
+        </p>
+        <div class="skills">
+          <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+    <div class="projects-grid">
+
+      <article class="card">
+        <div class="card-icon">🛒</div>
+        <h3>E-Commerce Store</h3>
+        <p>A full-stack shopping app with cart, auth, and payment integration built with React and Node.js.</p>
+        <div class="card-links">
+          <a href="#" aria-label="Live demo of E-Commerce Store">🔗 Live Demo</a>
+          <a href="#" aria-label="GitHub repo of E-Commerce Store">⭐ GitHub</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🤖</div>
+        <h3>AI Chat App</h3>
+        <p>Real-time chat application powered by OpenAI API with streaming responses and conversation history.</p>
+        <div class="card-links">
+          <a href="#" aria-label="Live demo of AI Chat App">🔗 Live Demo</a>
+          <a href="#" aria-label="GitHub repo of AI Chat App">⭐ GitHub</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">📊</div>
+        <h3>Dashboard Analytics</h3>
+        <p>Interactive data visualization dashboard with charts, filters, and CSV export functionality.</p>
+        <div class="card-links">
+          <a href="#" aria-label="Live demo of Dashboard Analytics">🔗 Live Demo</a>
+          <a href="#" aria-label="GitHub repo of Dashboard Analytics">⭐ GitHub</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">📝</div>
+        <h3>Blog Platform</h3>
+        <p>Markdown-powered blog with a custom CMS, tagging system, and SEO-optimized static generation.</p>
+        <div class="card-links">
+          <a href="#" aria-label="Live demo of Blog Platform">🔗 Live Demo</a>
+          <a href="#" aria-label="GitHub repo of Blog Platform">⭐ GitHub</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🌦️</div>
+        <h3>Weather App</h3>
+        <p>Location-based weather forecasting app using the OpenWeatherMap API with a clean, minimal UI.</p>
+        <div class="card-links">
+          <a href="#" aria-label="Live demo of Weather App">🔗 Live Demo</a>
+          <a href="#" aria-label="GitHub repo of Weather App">⭐ GitHub</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">✅</div>
+        <h3>Task Manager</h3>
+        <p>Drag-and-drop kanban board for task management with local persistence and team collaboration features.</p>
+        <div class="card-links">
+          <a href="#" aria-label="Live demo of Task Manager">🔗 Live Demo</a>
+          <a href="#" aria-label="GitHub repo of Task Manager">⭐ GitHub</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="section-line"></div>
+    <div class="contact-box">
+      <p style="color:var(--muted); max-width:480px;">
+        Whether you have a project in mind, want to collaborate, or just want to say hi —
+        my inbox is always open.
+      </p>
+      <a href="mailto:your@email.com" class="btn btn-primary">✉️ Send Me an Email</a>
+      <div class="contact-links">
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <!-- GitHub SVG icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.989V9h3.101v1.561h.045c.432-.817 1.487-1.679 3.061-1.679 3.273 0 3.876 2.154 3.876 4.956v6.614zM5.337 7.433a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM6.762 20.452H3.911V9h2.851v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Twitter / X
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>Designed & Built by <strong>Manaswin</strong> · Deployed on Vercel</p>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    // Close nav on link click (mobile)
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      });
+    });
+
+    // Scroll-based active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navAs    = document.querySelectorAll('.nav-links a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navAs.forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + e.target.id
+              ? 'var(--text)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => observer.observe(s));
+
+    // Fade-in cards on scroll
+    const cards = document.querySelectorAll('.card');
+    const cardObs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+          }, i * 80);
+          cardObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    cards.forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(20px)';
+      c.style.transition = 'opacity 0.4s ease, transform 0.4s ease, border-color 0.25s ease';
+      cardObs.observe(c);
+    });
+  </script>
+</body>
+</html>
