@@ -377,6 +377,31 @@ body {
     margin-top: 0.5rem;
 }
 
+/* Certificate download icon */
+.cert-download {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-left: 0.4rem;
+    transition: color 0.3s ease;
+    vertical-align: middle;
+}
+
+.cert-download:hover {
+    color: var(--accent-color);
+}
+
+/* Inline links in experience */
+.inline-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.inline-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
 /* Tags */
 .tags {
     display: flex;
