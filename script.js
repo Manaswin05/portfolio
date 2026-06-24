@@ -69,6 +69,33 @@ function erase() {
 
 document.addEventListener("DOMContentLoaded", function() {
     if(textArray.length) setTimeout(type, newTextDelay + 250);
+
+    // Scroll-triggered fade-in animations
+    const faders = document.querySelectorAll('.glass-panel, .section-title, .hero-text, .github-section .glass-panel');
+    faders.forEach(el => el.classList.add('fade-in'));
+
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    faders.forEach(el => observer.observe(el));
+
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
 });
 
 
@@ -83,7 +110,7 @@ camera.position.z = 30;
 
 const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap at 2 for mobile perf
 
 // Groups for rotation
 const group = new THREE.Group();
@@ -91,7 +118,8 @@ scene.add(group);
 
 // 1. Particle System (Stars/Dust)
 const particlesGeometry = new THREE.BufferGeometry();
-const particlesCount = 1500;
+const isMobile = window.innerWidth < 768;
+const particlesCount = isMobile ? 600 : 1500; // Fewer particles on mobile
 const posArray = new Float32Array(particlesCount * 3);
 
 for(let i = 0; i < particlesCount * 3; i++) {
