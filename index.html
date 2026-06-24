@@ -24,6 +24,7 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#github">GitHub</a></li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -38,6 +39,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#github">GitHub</a></li>
         </ul>
     </div>
 
@@ -118,13 +120,33 @@
     </section>
 
     <!-- GitHub Activity Section -->
-    <section class="github-section section" style="padding-top: 0;">
+    <section id="github" class="github-section section" style="padding-top: 0;">
         <div class="container">
             <h2 class="section-title" style="margin-bottom: 2rem;">GitHub Activity</h2>
-            <div class="glass-panel" style="padding: 2rem; overflow-x: auto; text-align: center;">
-                <a href="https://github.com/Manaswin05" target="_blank" rel="noopener noreferrer" title="Visit my GitHub Profile">
-                    <img src="https://ghchart.rshah.org/ffffff/Manaswin05" alt="Manaswin's GitHub Contributions" style="min-width: 700px; max-width: 100%; opacity: 0.85; filter: grayscale(100%) brightness(1.2); cursor: pointer;" />
-                </a>
+            <div class="glass-panel" style="padding: 2rem; text-align: center;">
+
+                <!-- Contribution Heatmap (green squares grid) -->
+                <div style="overflow-x: auto; margin-bottom: 1.5rem;">
+                    <a href="https://github.com/Manaswin05" target="_blank" rel="noopener noreferrer" title="Visit my GitHub Profile">
+                        <img
+                            src="https://ghchart.rshah.org/Manaswin05"
+                            alt="Manaswin's GitHub Contribution Heatmap"
+                            style="min-width: 700px; max-width: 100%; cursor: pointer; opacity: 0.9;"
+                        />
+                    </a>
+                </div>
+
+                <!-- Activity Graph (line/area chart) -->
+                <div style="overflow-x: auto;">
+                    <a href="https://github.com/Manaswin05" target="_blank" rel="noopener noreferrer" title="Visit my GitHub Profile">
+                        <img
+                            src="https://github-readme-activity-graph.vercel.app/graph?username=Manaswin05&theme=react-dark&hide_border=true&bg_color=00000000&color=a0a0a0&line=39d353&point=ffffff&area=true&area_color=39d353"
+                            alt="Manaswin's GitHub Activity Graph"
+                            style="min-width: 700px; max-width: 100%; cursor: pointer;"
+                        />
+                    </a>
+                </div>
+
                 <p style="margin-top: 1.25rem; color: var(--text-secondary); font-size: 0.9rem;">
                     Click the graph to explore my GitHub profile and repositories.
                 </p>
