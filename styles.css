@@ -21,6 +21,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    letter-spacing: -0.01em; /* Professional sleek typography */
 }
 
 /* Three.js Canvas */
@@ -66,18 +67,19 @@ body {
 
 /* Glassmorphism Panel */
 .glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     padding: 2rem;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .glass-panel:hover {
-    transform: translateY(-5px);
-    border-color: rgba(139, 92, 246, 0.3);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Typography & Buttons */
@@ -219,20 +221,23 @@ body {
 }
 
 .greeting {
-    color: var(--accent-color);
+    color: var(--text-secondary);
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
-.glitch-text {
-    font-size: 4rem;
+.gradient-text {
+    font-size: 4.5rem;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, #fff, #a0a0a0);
+    background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
 }
 
 .typewriter {
@@ -380,13 +385,14 @@ body {
 }
 
 .tag {
-    background: rgba(139, 92, 246, 0.1);
-    color: #c4b5fd;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
     padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
     font-weight: 500;
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: 0.02em;
 }
 
 /* Skills */
@@ -415,19 +421,19 @@ body {
 }
 
 .skill-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
     font-size: 0.9rem;
     color: var(--text-secondary);
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
 }
 
 .skill-item:hover {
-    background: rgba(139, 92, 246, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
-    border-color: rgba(139, 92, 246, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
 

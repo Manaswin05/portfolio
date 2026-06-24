@@ -102,9 +102,9 @@ particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3
 
 const particlesMaterial = new THREE.PointsMaterial({
     size: 0.05,
-    color: 0x8b5cf6, // Accent color (purple)
+    color: 0xffffff, // Changed to white for monochrome look
     transparent: true,
-    opacity: 0.8,
+    opacity: 0.4, // Reduced opacity for subtlety
     blending: THREE.AdditiveBlending
 });
 
@@ -114,10 +114,10 @@ group.add(particlesMesh);
 // 2. Abstract Geometry (Icosahedron Wireframe)
 const geom = new THREE.IcosahedronGeometry(10, 1);
 const mat = new THREE.MeshBasicMaterial({
-    color: 0x8b5cf6,
+    color: 0xaaaaaa, // Subtle grey
     wireframe: true,
     transparent: true,
-    opacity: 0.15
+    opacity: 0.1
 });
 const shape = new THREE.Mesh(geom, mat);
 shape.position.set(15, 0, -10); // Offset it slightly to the right
